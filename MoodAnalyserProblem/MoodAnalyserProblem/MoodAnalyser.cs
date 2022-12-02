@@ -21,11 +21,18 @@ namespace MoodAnalyzerProblem
         }
         public string AnalyseMood(string message)
         {
-            if (message.ToUpper().Contains("SAD"))
+            try
             {
-                return "SAD";
+                if (this.message.Contains("Sad"))
+                {
+                    return "SAD";
+                }
+                else
+                {
+                    return "HAPPY";
+                }
             }
-            else
+            catch (NullReferenceException ex)
             {
                 return "HAPPY";
             }
