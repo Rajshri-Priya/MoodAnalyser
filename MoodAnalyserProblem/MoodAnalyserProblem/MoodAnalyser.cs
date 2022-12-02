@@ -10,9 +10,6 @@ namespace MoodAnalyzerProblem
     public class MoodAnalyser
     {
         public string message;
-        /// <summary>
-        /// Initializes a new instances of the <see cref="= "MoodAnalyser"/>class.
-        /// </summary>
         public MoodAnalyser()
         {
         }
@@ -20,14 +17,14 @@ namespace MoodAnalyzerProblem
         {
             this.message = message;
         }
-        public string AnalyseMood(string message)
+        public string AnalyseMood()
         {
+            if (message == string.Empty)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Message is Empty");
+            }
             try
             {
-                if (string.IsNullOrEmpty(message))
-                {
-                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_MOOD, "Message is Empty");
-                }
                 if (message.Contains("Sad"))
                 {
                     return "SAD";
@@ -39,7 +36,7 @@ namespace MoodAnalyzerProblem
             }
             catch (MoodAnalyserException)
             {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MOOD, "Message is ull");
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "Message is Null");
             }
         }
     }

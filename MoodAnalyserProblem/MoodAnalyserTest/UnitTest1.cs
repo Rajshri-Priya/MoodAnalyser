@@ -1,3 +1,4 @@
+using MoodAnalyserProblem;
 using MoodAnalyzerProblem;
 
 namespace MoodAnalyserTest
@@ -5,20 +6,44 @@ namespace MoodAnalyserTest
     [TestClass]
     public class UnitTest1
     {
-        //UC2
-        // TC 2.1: Given null mood Should Return HAPPY
+        //UC4
+        //TC 4.1  Given MoodAnalyse Class Name Should Return MoodAnalyser Object.
         [TestMethod]
-        public void GivenNullMessage_WhenAnalyse_ShouldReturnHappy()
+        public void GivenMoodAnalyseClassName_ShouldReturnMoodAnalyseObject()
         {
             string message = null;
-            MoodAnalyser moodAnalyzer = new MoodAnalyser(message);
+            object expected = new MoodAnalyser(message);
+            object obj = MoodAnalyseFactory.CreateMoodAnalyse("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser");
+            expected.Equals(obj);
+        }
+        //TC 4.2  Given Improper Class Name Should throw MoodAnalyssiException.
+        [TestMethod]
+        public void GivenImproperClassNameShouldThrowMoodAnalysisException()
+        {
+            string expected = "Class Not Found";
             try
             {
-                string actutal = moodAnalyzer.AnalyseMood(message);
+                object moodAnalyseObject = MoodAnalyseFactory.CreateMoodAnalyse("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser");
+
             }
-            catch (MoodAnalyserException ex)
+            catch (MoodAnalyserException exception)
             {
-                Assert.AreEqual(ex.Message, "Message is Null");
+                Assert.AreEqual(expected, exception.Message);
+            }
+        }
+        //TC 4.3  Given Improper Constructor should throw MoodAnalysisException
+        [TestMethod]
+        public void GivenImproperConstructorShouldThrowMoodAnalysisException()
+        {
+
+            string expected = "Constructor is Not Found";
+            try
+            {
+                object moodAnalyseObject = MoodAnalyseFactory.CreateMoodAnalyse("MoodAnalyzerProblem.MoodAnalyser", "MoodAnalyser");
+            }
+            catch (MoodAnalyserException exception)
+            {
+                Assert.AreEqual(expected, exception.Message);
             }
         }
     }
