@@ -1,2 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿namespace MoodAnalyzerProblem
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("How is your mood Happy or Sad");
+            string message = Console.ReadLine();
+            MoodAnalyser moodAnalyzer = new MoodAnalyser();
+            Console.WriteLine(moodAnalyzer.AnalyseMood(message));
+        }
+    }
+}
